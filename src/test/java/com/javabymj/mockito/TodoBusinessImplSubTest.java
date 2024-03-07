@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-public class TodoBusinessImplTest {
+public class TodoBusinessImplSubTest {
     @Test
     public  void testRetrieveTodosRelatedToSpring_UsingStub(){
         TodoService todoService=new TodoServiceStub();
