@@ -14,6 +14,7 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.MockitoRule;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -77,4 +78,25 @@ public class TodoBusinessImplInjectMockTest {
        then(todoService).should(times(2)).deleteTodo(argumentCaptor.capture());
        Assert.assertEquals(argumentCaptor.getAllValues().size(),2);
     }
+
+    //spy
+    @Test
+    public void testSpy(){
+        List<String> spyList= spy(ArrayList.class);
+        //below add will return true which actual returned value from below operation
+        spyList.add("one");
+        when(spyList.size()).thenReturn(10);
+        //check mocked method on spy
+        Assert.assertEquals(10,spyList.size());
+        //verify add is called or not
+        verify(spyList).add("one");
+
+        List<String> mockList= mock(ArrayList.class);
+        when(mockList.size()).thenReturn(10);
+        //check mocked method on spy
+        Assert.assertEquals(10,mockList.size());
+        //this will give default return type as false in below case
+        Assert.assertEquals(false,mockList.add("one"));
+    }
+
 }
